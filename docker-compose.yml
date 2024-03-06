@@ -65,14 +65,14 @@ services:
       - "9200:9200"
       - "9300:9300"
 
-  productService:
+  productservice:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8084:8084"
     depends_on:
-      - postgres
+      - db
       - minio
       - zookeeper
       - kafka
@@ -80,17 +80,17 @@ services:
 
   cartapi:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8086:8086"
     depends_on:
-      - postgres
+      - db
       - kafka
 
   productqueryservice:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8085:8085"
@@ -101,12 +101,12 @@ services:
 
   authservice:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8083:8083"
     depends_on:
-      - postgres
+      - db
 
 networks:
   my-network:
